@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            align-items: center;
+            padding: 100px;
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #fff;
+            padding-top: 5%;
+            padding-left: 5%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 5%;
+            padding-right: 5%;
+            margin: 5px 0;  /* Adjusted margin to decrease the height */
+        }
+
+        li {
+            background-color: #3A3B3C;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: aliceblue;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+            display: inline;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            margin-left: 5%;
+            background-color: #3A3B3C;
+            color: aquamarine;  /* Add text color to make text visible */
+            border: none;  /* Remove border */
+            outline: none; 
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            font-size: 40px;
+            font-variant: small-caps;
+            color: aliceblue;
+        }
+    </style>
+    <title>VixApp</title>
+</head>
+<body>
+    <h1>This is your todo list</h1>
+    <ul>
+        {% for i, task in tasks %}
+            <li>
+                {{ task }}
+                <form id="removeForm{{ i }}" action="{{ url_for('pop_task', index=i) }}" method="post" class="remove-form">
+                    <button type="submit">Done</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="/add" method="post">
+        <label id="stylelabel" for="i"><b>Add tasks</b></label>
+        <input type="text" id="task" name="i"/>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
